@@ -15,6 +15,11 @@ class Animal
 	def speak
 		"hello!"
 	end
+
+	protected
+	def run
+		"Running"
+	end
 end
 
 
@@ -34,57 +39,83 @@ class Fish < Animal
 	include Swimmable
 end
 
-class Mammal < Animal
-end
+module Mammal
 
-class GoodDog < Mammal
-	attr_reader :color
-	include Swimmable
-	include Climbable
-	
-	def initialize(name, color)
-		super(name)
-		@color = color
+	class GoodDog < Animal
+		DOG_YEARS = 7
+		attr_reader :color, :age
+		include Swimmable
+		include Climbable
+		
+		def initialize(name, color, age)
+			super(name)
+			@color = color
+			@age = age * DOG_YEARS
+		end
+
+		def speak
+			# "#{self.name} says arf!"
+			super + " from #{self.class} class"
+		end
+
+		def warm_blodded?
+			true
+		end
+
+		def public_disclosure
+			"#{self.name} in human years is #{human_age}"
+		end
+
+		def come_on_run
+			self.name + " is " + run
+		end
+
+		private
+		def human_age
+			self.age / DOG_YEARS
+		end
 	end
 
-	def speak
-		# "#{self.name} says arf!"
-		super + " from #{self.class} class"
+	class Cat < Animal
 	end
 
-	def warm_blodded?
-		true
+	class BadDog < Animal
+		attr_accessor :age
+		def initialize(name, age)
+			super(name)
+			@age = age
+		end
+	end
+
+	class NiceWhale < Animal
+		include Swimmable
+	end
+
+	def self.some_out_of_place_method
+		"This is a method inside the module Mammal"
 	end
 
 end
 
-class Cat < Mammal
-end
-
-class BadDog < Mammal
-	attr_accessor :age
-	def initialize(name, age)
-		super(name)
-		@age = age
-	end
-end
-
-class NiceWhale < Mammal
-	include Swimmable
-end
-
+# puts Mammal::some_out_of_place_method 
+m = Mammal::GoodDog.new('Sparky', 'brown', 2)
+puts m.public_disclosure
+puts m.come_on_run
 # nw = NiceWhale.new('Wahael Fish')
 # puts nw.swim
 # s = BadDog.new('Scooby', 2)
 # puts s.name
 # puts s.age
-sparky = GoodDog.new('Sparky', 'brown')
-puts sparky.walk
-puts sparky.swim
-puts "--- GoodDog method lookup ---"
-puts GoodDog.ancestors
+# sparky = Mammal::GoodDog.new('Sparky', 'brown')
+# puts "Sparky: " + sparky.walk
+# puts "Sparky: " + sparky.swim
+# puts "--- GoodDog method lookup ---"
+# puts Mammal::GoodDog.ancestors
 # puts sparky.speak
 # puts sparky.name
 # puts sparky.color
 # kitty = Cat.new('Kitty')
+# kitty = Mammal::Cat.new('Kitty')
+# puts "Kitty: " + kitty.walk
+# puts "Kitty: " + kitty.name
 # puts kitty.speak
