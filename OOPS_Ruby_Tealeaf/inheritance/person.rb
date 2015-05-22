@@ -4,6 +4,10 @@ class Person
 	def initialize(name)
 		@name = name
 	end
+
+	def hi
+		"Hi"
+	end
 end
 
 class HappyPerson < Person
@@ -31,6 +35,9 @@ end
 
 # hp = HappyPerson.new('Chirag', true)
 # puts hp.is_happy
-s = Son.new('A')
+# s = Son.new('A')
 # puts s.send :say_hi
-puts s.instance_of? Son
+# puts s.instance_of? Son
+
+bob = Person.new('Bob')
+puts bob.hi

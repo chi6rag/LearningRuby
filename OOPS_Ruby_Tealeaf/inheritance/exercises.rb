@@ -1,19 +1,49 @@
 class Vehicle
 	@@number_of_objects = 0
+	attr_accessor :color, :speed
+	attr_reader :year, :model
+
 
 	def self.created_objects
 		@@number_of_objects
 	end
 
-	protected
-	def initialize
+	def initialize(year, color, model, speed=0)
+  	@year = year
+  	@color = color
+  	@model = model
+  	@speed = speed
 		@@number_of_objects += 1
-	end
+  end
 
+  def accelerate
+  	self.speed+=20
+  end
+
+  def brake
+  	self.speed-=20
+  end
+
+  def shut_down
+  	self.speed = 0
+  end
+
+  def spray_paint(color)
+    @color = color
+  end
 
 	def self.calculate_mileage(gallons, miles)
     "The mileage of the car is #{(gallons.to_f/miles.to_f)} gallons per mile"
   end
+
+  def age
+  	get_age
+  end
+
+  private
+	  def get_age
+	  	Time.now.strftime('%Y').to_i - @year
+	  end
 end
 
 module Towable
@@ -22,36 +52,11 @@ module Towable
 	end
 end
 
-class FourWheelers
+module FourWheelers
+
 	class MyCar < Vehicle
-		attr_accessor :color, :speed
-	  attr_reader :year, :model
 	  include Towable
 	  NUMBER_OF_DOORS = 4
-	  
-	  def initialize(year, color, model, speed=0)
-	  	super()
-	  	@year = year
-	  	@color = color
-	  	@model = model
-	  	@speed = speed
-	  end
-
-	  def accelerate
-	  	self.speed+=20
-	  end
-
-	  def brake
-	  	self.speed-=20
-	  end
-
-	  def shut_down
-	  	self.speed = 0
-	  end
-
-	  def spray_paint(color)
-	    @color = color
-	  end
 
 	  def to_s
 	    "This is a #{self.model} car which is manufactured in #{self.year}, has #{self.color} color and travels at #{self.speed} mph"
@@ -61,11 +66,22 @@ class FourWheelers
 	class MyTruck < Vehicle
 		include Towable
 		NUMBER_OF_DOORS = 2
+
+	  def to_s
+	    "This is a #{self.model} #{self.class} which is manufactured in #{self.year}, has #{self.color} color and travels at #{self.speed} mph"
+	  end
 	end
+
 end
 
-my_car = FourWheelers::MyCar.new(1994, 'white', 'A101', 365)
-puts my_car.can_tow?(3000)
+car = FourWheelers::MyCar.new(1994, 'orange', 'T101', 365)
+puts car
+puts "Can this car tow? " + car.can_tow?(1950).to_s
+puts "How old is this car? " + car.age.to_s
+# truck = FourWheelers::MyTruck.new(1994, 'orange', 'T101', 365)
+# puts truck
+# my_car = FourWheelers::MyCar.new(1994, 'white', 'A101', 365)
+# puts my_car.can_tow?(3000)
 # puts "-------- Vehicle Ancestors --------"
 # puts Vehicle.ancestors
 # puts "-------- MyCar Ancestors --------"
