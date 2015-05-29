@@ -1,4 +1,4 @@
-require_relative 'alien.rb'
+require_relative 'lib/alien.rb'
 
 puts "Please Enter the following: "
 puts "Code Name: "
@@ -12,4 +12,23 @@ number_of_legs = gets.chomp
 puts("Home Planet: ")
 home_planet = gets.chomp
 alien = Alien.new(code_name, blood_color, number_of_antennas, number_of_legs, home_planet)
-alien.export_details_as_pdf
+
+pdf = lambda {
+	alien.export_details_as_pdf
+	puts "Registered as PDF! Welcome to Earth"
+}
+
+text = lambda {
+  alien.export_details_as_text
+  puts "Registered as Text! Welcome to Earth"
+}
+puts "Select format to save:\n1. PDF\n2. text"
+choice = gets.chomp.downcase
+
+if choice.match(/pdf|1/) 
+	alien.export_details_as_pdf
+	puts "Details exported as PDF!\nWelcome to Earth"
+else
+  alien.export_details_as_text
+	puts "Details exported as Text!\nWelcome to Earth"
+end
