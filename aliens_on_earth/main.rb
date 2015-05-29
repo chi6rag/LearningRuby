@@ -13,15 +13,6 @@ puts("Home Planet: ")
 home_planet = gets.chomp
 alien = Alien.new(code_name, blood_color, number_of_antennas, number_of_legs, home_planet)
 
-pdf = lambda {
-	alien.export_details_as_pdf
-	puts "Registered as PDF! Welcome to Earth"
-}
-
-text = lambda {
-  alien.export_details_as_text
-  puts "Registered as Text! Welcome to Earth"
-}
 puts "Select format to save:\n1. PDF\n2. text"
 choice = gets.chomp.downcase
 
