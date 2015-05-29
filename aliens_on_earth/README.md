@@ -3,4 +3,4 @@ A treaty of friendship has been signed between Aliens and Humans. The aliens are
 
 Part A: Create a console based application that accepts alien details like Code Name, Blood Color, No.of Antennas, No. of Legs and Home Planet and then export these details into one of the 2 formats, depending on user’s choice - “plain text” or “PDF”.
 
-Part B: Make the code extensible so that it is easy to ‘plug in’ a new format called ‘foobar’ without making changes to the application code.
+Part B: Make the code extensible so that it is easy to ‘plug in’ a new format called ‘foobar’ without making changes to the application code
