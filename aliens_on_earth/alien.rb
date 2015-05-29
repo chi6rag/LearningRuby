@@ -1,4 +1,4 @@
-load './registrable.rb'
+require_relative 'registrable.rb'
 
 class Alien
 	include Registrable
@@ -13,6 +13,3 @@ class Alien
 		@home_planet = home_planet
 	end
 end
-
-# alien = Alien.new(1234, 'red', 2, 4, 'Mars')
-# alien.export_details_as_text
