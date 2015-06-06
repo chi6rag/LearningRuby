@@ -1,5 +1,6 @@
-module FormatPDF
+module FormatPdf
 	require 'prawn'
+
 	def export_details_as_pdf
 		file_name = self.code_name.to_s + ".pdf"
 		Prawn::Document.generate("./registered_aliens/" + file_name) do |f|

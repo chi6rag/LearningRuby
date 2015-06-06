@@ -1,7 +1,10 @@
-require_relative '../formats/format_text'
-require_relative '../formats/format_pdf'
+require_relative './requirable.rb'
+include Requirable
+require_formats { |f| require_relative "../formats/#{f}" }
 
 module Exportable
-	include FormatPDF
-	include FormatText
+	require_formats { |f|
+		format = f.split('_').map{|s| s.capitalize!}.join
+		include Kernel.const_get(format)
+	}
 end

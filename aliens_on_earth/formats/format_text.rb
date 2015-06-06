@@ -1,5 +1,4 @@
-module FormatText
-	
+module FormatText	
 	def export_details_as_text
 		file_name = self.code_name.to_s + ".txt"
 		File.open("./registered_aliens/" + file_name, 'w+') do |f|
@@ -11,5 +10,4 @@ module FormatText
 			end
 		end
 	end
-	
 end
