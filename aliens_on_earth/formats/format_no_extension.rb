@@ -1,7 +1,7 @@
-module FormatText
-	
-	def export_details_as_text
-		file_name = self.code_name.to_s + ".txt"
+module FormatNoExtension
+
+	def export_details_without_extension
+		file_name = self.code_name.to_s
 		File.open("./registered_aliens/" + file_name, 'w+') do |f|
 			f.puts "Details for Alien ##{self.code_name}\n"
 			f.puts " "
@@ -11,5 +11,5 @@ module FormatText
 			end
 		end
 	end
-	
+
 end

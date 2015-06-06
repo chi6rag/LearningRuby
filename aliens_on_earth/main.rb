@@ -13,13 +13,14 @@ puts("Home Planet: ")
 home_planet = gets.chomp
 alien = Alien.new(code_name, blood_color, number_of_antennas, number_of_legs, home_planet)
 
-puts "Select format to save:\n1. PDF\n2. text"
-choice = gets.chomp.downcase
-
-if choice.match(/pdf|1/) 
-	alien.export_details_as_pdf
-	puts "Details exported as PDF!\nWelcome to Earth"
-else
-  alien.export_details_as_text
-	puts "Details exported as Text!\nWelcome to Earth"
+puts "Select Export Format (Enter the Format Exactly)"
+formats = alien.get_export_options
+formats.map { |format, export_method_name| puts format }
+choice = gets.chomp
+begin
+	alien.send formats[choice]
+	puts "Details Successfully Exported!"
+	puts "Welcome to Earth!"
+rescue
+	puts "\nWrong Choice\nPlease enter the format exactly"
 end

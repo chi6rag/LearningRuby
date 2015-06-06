@@ -12,4 +12,5 @@ class Alien
     @number_of_legs = number_of_legs
     @home_planet = home_planet
   end
+  
 end
