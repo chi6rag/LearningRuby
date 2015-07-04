@@ -10,6 +10,6 @@ Create a console based application that accepts alien details like Code Name, Bl
 Make the code extensible so that it is easy to ‘plug in’ a new format called ‘foobar’ without making changes to the application code
 
 ####How to include new export formats
- - Under the formats directory, make a new script - format_<format_name>.rb
+ - Under the formats directory, make a new script - format_format_name.rb
  - Inside the script file, create a module by the name of Format<format_name>
- - Define a new method - export_details_as_<format_name>
+ - Define a new method - export_details_as_format_name
