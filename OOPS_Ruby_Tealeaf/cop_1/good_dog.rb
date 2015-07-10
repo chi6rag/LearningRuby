@@ -1,12 +1,28 @@
 class GoodDog
-	@@count = 0
 	def initialize(name)
 		@name = name
-		@@count += 1
 	end
 
-	def self.count
-		@@count
+	def speak
+		"#{@name} says Arf!"
+	end
+
+	def name
+		@name
+	end
+
+	def name=(name)
+		@name = name
 	end
 
 end
+
+sparky = GoodDog.new("Sparky")
+puts sparky.speak
+# puts sparky.name
+puts sparky.name
+sparky.name = "Sparkyyyie"
+puts sparky.name
+
+fido = GoodDog.new("Fido")
+puts fido.speak
