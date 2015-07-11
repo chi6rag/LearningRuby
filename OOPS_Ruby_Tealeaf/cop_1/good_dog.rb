@@ -1,12 +1,14 @@
 class GoodDog
-	@@count = 0
 	def initialize(name)
 		@name = name
-		@@count += 1
 	end
 
-	def self.count
-		@@count
+	def name
+		@name
 	end
 
 end
+
+good_dog = GoodDog.new("Scooby")
+print good_dog.methods
+# puts good_dog.name
